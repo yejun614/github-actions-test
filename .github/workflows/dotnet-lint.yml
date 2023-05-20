@@ -16,8 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    env:
-      PR_NUMBER: ${{ github.event.inputs.number }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-dotnet@v3
@@ -26,7 +24,7 @@ jobs:
       - name: Dotnet Format
         run: |
           dotnet tool install -g dotnet-format
-          dotnet-format --report dotnet-format-report.json
+          dotnet-format ${{ WORKSPACE }} --report dotnet-format-report.json
       - name: Check Report
         run: |
           cat dotnet-format-report.json
@@ -37,5 +35,5 @@ jobs:
           git diff
           git config --local user.email "yejun614@naver.com"
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
-          git commit -m "[Style] dotnet format(${PR_NUMBER})"
+          git commit -m "[Style] dotnet format(${{ github.event.inputs.number }})"
           git push
