@@ -1,6 +1,6 @@
 name: Dotnet Lint
 
-run-name: \[${{ github.event.number }}\] Run Dotnet Lint
+run-name: [${{ github.event.number }}] Run Dotnet Lint
 
 on:
   pull_request:
@@ -26,7 +26,7 @@ jobs:
       - name: Dotnet Format
         run: |
           dotnet tool install -g dotnet-format
-          dotnet-format server.sln --report dotnet-format-report.json
+          dotnet-format --report dotnet-format-report.json
       - name: Check Report
         run: |
           cat dotnet-format-report.json
