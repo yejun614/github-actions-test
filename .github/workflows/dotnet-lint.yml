@@ -28,14 +28,15 @@ jobs:
         run: |
           dotnet tool install -g dotnet-format
           dotnet-format ${WORKSPACE} --report dotnet-format-report.json
-      - name: Check Report
-        run: |
+      # - name: Check Report
+        # run: |
           cat dotnet-format-report.json
           rm dotnet-format-report.json
       - name: Git commit & push
         run: |
-          git add .
+          git status
           git diff
+          git add .
           git config --local user.email "yejun614@naver.com"
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           git commit -m "[Style] dotnet format(${PR_NUMBER})"
