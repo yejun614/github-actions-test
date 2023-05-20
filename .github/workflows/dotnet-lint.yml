@@ -1,6 +1,6 @@
 name: Dotnet Lint
 
-run-name: [${{ github.event.number }}] Run Dotnet Lint
+run-name: Run Dotnet Lint(${{ github.event.number }})
 
 on:
   pull_request:
