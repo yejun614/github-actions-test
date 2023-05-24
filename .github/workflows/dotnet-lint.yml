@@ -27,6 +27,7 @@ jobs:
         run: |
           echo running on branch $GITHUB_BASE_REF
           echo running on branch $GITHUB_HEAD_REF
+          echo test ${{ github.ref_name }}
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
@@ -51,7 +52,7 @@ jobs:
           echo -------------------------------------------------
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           echo -------------------------------------------------
-          git commit -m "[Style] Auto dotnet format"
+          git commit -m "[Style] Auto dotnet format (#${{ github.event.inputs.number }})"
           echo -------------------------------------------------
           git branch
           git log
