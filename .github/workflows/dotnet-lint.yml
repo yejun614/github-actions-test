@@ -24,8 +24,9 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
-      - name: Dotnet Format
+      - name: Change Directory
         run: cd ${WORKSPACE}
+      - name: Dotnet Format
         run: |
           dotnet tool install -g dotnet-format
           dotnet-format . --report dotnet-format-report.json
