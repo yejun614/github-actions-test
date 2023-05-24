@@ -21,6 +21,8 @@ jobs:
       WORKSPACE: ${{ vars.WORKSPACE }}
     steps:
       - uses: actions/checkout@v3
+      - name: Branch name
+        run: echo running on branch ${GITHUB_REF##*/}
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
@@ -40,4 +42,4 @@ jobs:
           git config --local user.email "yejun614@naver.com"
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           git commit -m "[Style] dotnet format(${PR_NUMBER})"
-          git push
+          git push origin 
