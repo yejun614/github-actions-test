@@ -38,10 +38,18 @@ jobs:
           rm ${WORKSPACE}/dotnet-format-report.json
       - name: Git commit & push
         run: |
+          echo -------------------------------------------------
           git status
+          echo -------------------------------------------------
           git diff
+          echo -------------------------------------------------
           git add ${WORKSPACE}
+          echo -------------------------------------------------
           git config --local user.email "yejun614@naver.com"
+          echo -------------------------------------------------
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
+          echo -------------------------------------------------
           git commit -m "[Style] dotnet format(${PR_NUMBER})"
+          echo -------------------------------------------------
           git push origin $GITHUB_HEAD_REF
+          echo -------------------------------------------------          
