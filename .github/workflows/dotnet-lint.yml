@@ -24,21 +24,19 @@ jobs:
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
-      - name: Change Directory
-        run: cd ${WORKSPACE}
       - name: Dotnet Format
         run: |
           dotnet tool install -g dotnet-format
-          dotnet-format . --report dotnet-format-report.json
+          dotnet-format ${WORKSPACE} --report dotnet-format-report.json
       - name: Check Report
         run: |
-          cat dotnet-format-report.json
-          rm dotnet-format-report.json
+          cat ${WORKSPACE}/dotnet-format-report.json
+          rm ${WORKSPACE}/dotnet-format-report.json
       - name: Git commit & push
         run: |
           git status
           git diff
-          git add .
+          git add ${WORKSPACE}
           git config --local user.email "yejun614@naver.com"
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           git commit -m "[Style] dotnet format(${PR_NUMBER})"
