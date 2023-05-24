@@ -44,4 +44,4 @@ jobs:
           git config --local user.email "yejun614@naver.com"
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           git commit -m "[Style] dotnet format(${PR_NUMBER})"
-          git push origin 
+          git push origin $GITHUB_HEAD_REF
