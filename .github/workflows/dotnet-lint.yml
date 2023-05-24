@@ -30,9 +30,8 @@ jobs:
           dotnet-format ${WORKSPACE} --report dotnet-format-report.json
       - name: Check Report
         run: |
-          find . -name "*.json"
-          cat dotnet-format-report.json
-          rm dotnet-format-report.json
+          cat ${WORKSPACE}/dotnet-format-report.json
+          rm ${WORKSPACE}/dotnet-format-report.json
       - name: Git commit & push
         run: |
           git status
