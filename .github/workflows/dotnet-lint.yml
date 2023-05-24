@@ -21,6 +21,8 @@ jobs:
       WORKSPACE: ${{ vars.WORKSPACE }}
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: $GITHUB_HEAD_REF
       - name: Branch name
         run: |
           echo running on branch $GITHUB_BASE_REF
@@ -49,9 +51,9 @@ jobs:
           echo -------------------------------------------------
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           echo -------------------------------------------------
-          git commit -m "[Style] dotnet format(${PR_NUMBER})"
+          git commit -m "[Style] Auto dotnet format"
           echo -------------------------------------------------
           git branch
           git log
           git push origin $GITHUB_HEAD_REF
-          echo -------------------------------------------------          
+          echo -------------------------------------------------
