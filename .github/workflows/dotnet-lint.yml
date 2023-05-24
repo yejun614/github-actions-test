@@ -27,7 +27,7 @@ jobs:
           echo test ${{ github.ref_name }}
       - uses: actions/checkout@v3
         with:
-          ref: $GITHUB_HEAD_REF
+          ref: ${{ github.event.pull_request.head.sha }}
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
