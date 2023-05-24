@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+        run: echo running on branch ${{ github.event.pull_request.base.ref }}
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
