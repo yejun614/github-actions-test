@@ -4,12 +4,6 @@ run-name: Run Dotnet Lint(${{ github.event.number }})
 
 on:
   pull_request:
-  workflow_dispatch:
-    inputs:
-      number:
-        description: 'Pull Request Number'
-        required: true
-        type: string
 
 jobs:
   Lint:
@@ -57,5 +51,5 @@ jobs:
           echo -------------------------------------------------
           git branch
           git log
-          git push origin ${{ github.event.pull_request.head }}
+          git push origin ${{ github.event.pull_request.head.ref }}
           echo -------------------------------------------------
