@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-      repository-project: write
+      repository-projects: write
     env:
       PR_NUMBER: ${{ github.event.inputs.number }}
       WORKSPACE: ${{ vars.WORKSPACE }}
