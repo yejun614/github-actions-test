@@ -52,9 +52,9 @@ jobs:
           echo -------------------------------------------------
           git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           echo -------------------------------------------------
-          git commit -m "[Style] Auto dotnet format (#${{ github.event.inputs.number }})"
+          git commit -m "[Style] Auto dotnet format"
           echo -------------------------------------------------
           git branch
           git log
-          git push origin $GITHUB_HEAD_REF
+          git push origin ${{ github.event.pull_request.head.sha }}
           echo -------------------------------------------------
