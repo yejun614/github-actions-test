@@ -57,5 +57,5 @@ jobs:
           echo -------------------------------------------------
           git branch
           git log
-          git push origin ${{ github.event.pull_request.head.sha }}
+          git push origin ${{ github.event.pull_request.head }}
           echo -------------------------------------------------
