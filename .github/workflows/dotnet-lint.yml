@@ -51,5 +51,7 @@ jobs:
           echo -------------------------------------------------
           git commit -m "[Style] dotnet format(${PR_NUMBER})"
           echo -------------------------------------------------
+          git branch
+          git log
           git push origin $GITHUB_HEAD_REF
           echo -------------------------------------------------          
