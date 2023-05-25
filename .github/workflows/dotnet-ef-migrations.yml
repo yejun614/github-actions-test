@@ -33,6 +33,8 @@ jobs:
           dotnet ef database update
       - name: Git commit & push
         run: |
+          git config --local user.email "yejun614@naver.com"
+          git config --local user.name "Dotnet Migration Bot (by YeJun, Jung)"
           echo --------------------- STATUS ---------------------
           git status
           echo ---------------------  DIFF  ---------------------
