@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Migrations:
+  migrations:
     runs-on: ubuntu-latest
     permissions:
       contents: write

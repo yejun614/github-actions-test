@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  Lint:
+  lint:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -50,7 +50,7 @@ jobs:
           echo ---------------------  PUSH  ---------------------
           git push origin ${{ github.event.pull_request.head.ref }}
 
-  Migrations Test:
+  migrations_test:
     runs-on: ubuntu-latest
     env:
       WORKSPACE: ${{ vars.WORKSPACE }}
