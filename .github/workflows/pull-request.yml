@@ -50,7 +50,7 @@ jobs:
           echo ---------------------  PUSH  ---------------------
           git push origin ${{ github.event.pull_request.head.ref }}
 
-  Migrations:
+  Migrations Test:
     runs-on: ubuntu-latest
     env:
       WORKSPACE: ${{ vars.WORKSPACE }}
@@ -63,5 +63,5 @@ jobs:
         run: |
           cd ${WORKSPACE}
           dotnet tool install --global dotnet-ef
-          dotnet ef migrations add "${{ github.event.head_commit.message }}" -o Data
+          dotnet ef migrations add "${{ github.event.head_commit.message }} ($(git rev-parse --short "$GITHUB_SHA"))" -o "Data/Migrations"
           dotnet ef database update
