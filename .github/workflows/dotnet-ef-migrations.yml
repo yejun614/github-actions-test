@@ -1,6 +1,6 @@
-name: Push Develop Branch
+name: Dotnet EF Migrations
 
-run-name: Push Develop Branch
+run-name: Dotnet EF Migrations
 
 on:
   workflow_dispatch:
