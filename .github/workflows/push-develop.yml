@@ -3,9 +3,7 @@ name: Push Develop Branch
 run-name: Push Develop Branch
 
 on:
-  push:
-    branches:
-      - develop
+  workflow_dispatch:
 
 jobs:
   Migrations:
@@ -28,7 +26,7 @@ jobs:
         run: |
           cd ${WORKSPACE}
           dotnet tool install --global dotnet-ef
-          dotnet ef migrations add "${{ github.event.head_commit.message }} ($(git rev-parse --short "$GITHUB_SHA"))" -o Data
+          dotnet ef migrations add "${{ github.event.head_commit.message }} ($(git rev-parse --short "$GITHUB_SHA"))" -o "Data/Migrations"
           dotnet ef database update
       - name: Git commit & push
         run: |
