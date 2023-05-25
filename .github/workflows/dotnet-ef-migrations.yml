@@ -30,12 +30,10 @@ jobs:
         run: |
           cd ${WORKSPACE}
           dotnet tool install --global dotnet-ef
-          dotnet ef migrations add "${{ github.event.head_commit.message }}"
+          dotnet ef migrations add "${{ github.event.head_commit.message }}" -o Data
           dotnet ef database update
       - name: Git commit & push
         run: |
-          git config --local user.email "yejun614@naver.com"
-          git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
           echo --------------------- STATUS ---------------------
           git status
           echo ---------------------  DIFF  ---------------------
