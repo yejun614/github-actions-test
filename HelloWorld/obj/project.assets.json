@@ -1265,23 +1265,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/jungyejun/.nuget/packages/": {},
-    "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
+    "/home/runner/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jungyejun/Projects/DEUDevTeam/github-actions-test/HelloWorld/HelloWorld.csproj",
+      "projectUniqueName": "/home/runner/work/github-actions-test/github-actions-test/HelloWorld/HelloWorld.csproj",
       "projectName": "HelloWorld",
-      "projectPath": "/Users/jungyejun/Projects/DEUDevTeam/github-actions-test/HelloWorld/HelloWorld.csproj",
-      "packagesPath": "/Users/jungyejun/.nuget/packages/",
-      "outputPath": "/Users/jungyejun/Projects/DEUDevTeam/github-actions-test/HelloWorld/obj/",
+      "projectPath": "/home/runner/work/github-actions-test/github-actions-test/HelloWorld/HelloWorld.csproj",
+      "packagesPath": "/home/runner/.nuget/packages/",
+      "outputPath": "/home/runner/work/github-actions-test/github-actions-test/HelloWorld/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "/Users/jungyejun/.nuget/NuGet/NuGet.Config"
+        "/home/runner/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
@@ -1332,7 +1328,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
       }
     }
   }
