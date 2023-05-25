@@ -41,7 +41,7 @@ jobs:
           echo ---------------------  ADD   ---------------------
           git add .
           echo --------------------- COMMIT ---------------------
-          git commit -m "[Chore] Auto EntityFramework Migrations"
+          git commit -m "[Chore] Auto EntityFramework Migrations ($(git rev-parse --short "$GITHUB_SHA"))"
           echo --------------------- BRANCH ---------------------
           git branch
           echo ---------------------  LOG   ---------------------
