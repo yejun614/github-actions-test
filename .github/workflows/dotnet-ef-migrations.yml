@@ -1,26 +1,21 @@
 name: Dotnet EF Migrations
 
-run-name: Run Dotnet EntityFramework Migrations (${{ github.event.number }})
+run-name: Dotnet EF Migrations
 
 on:
-  push:
-    branches:
-      - develop
+  workflow_dispatch:
 
 jobs:
-  Lint:
+  migrations:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
     env:
-      PR_NUMBER: ${{ github.event.inputs.number }}
       WORKSPACE: ${{ vars.WORKSPACE }}
     steps:
       - name: Branch name
         run: |
-          echo test ${{ github.head_ref }}
-          echo test ${{ github.ref_name }}
+          echo Branch ${{ github.ref_name }}
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.ref_name }}
@@ -31,17 +26,18 @@ jobs:
         run: |
           cd ${WORKSPACE}
           dotnet tool install --global dotnet-ef
-          dotnet ef migrations add ${{ github.event.head_commit.message }}
+          dotnet ef migrations add "${{ github.event.head_commit.message }} ($(git rev-parse --short "$GITHUB_SHA"))" -o "Data/Migrations"
+          dotnet ef database update
       - name: Git commit & push
         run: |
           git config --local user.email "yejun614@naver.com"
-          git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
+          git config --local user.name "Dotnet Migration Bot (by YeJun, Jung)"
           echo --------------------- STATUS ---------------------
           git status
           echo ---------------------  DIFF  ---------------------
           git diff
           echo ---------------------  ADD   ---------------------
-          git add ${WORKSPACE}
+          git add .
           echo --------------------- COMMIT ---------------------
           git commit -m "[Chore] Auto EntityFramework Migrations"
           echo --------------------- BRANCH ---------------------
