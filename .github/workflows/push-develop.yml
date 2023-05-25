@@ -28,7 +28,7 @@ jobs:
         run: |
           cd ${WORKSPACE}
           dotnet tool install --global dotnet-ef
-          dotnet ef migrations add "${{ github.event.head_commit.message }}" -o Data
+          dotnet ef migrations add "${{ github.event.head_commit.message }} ($(git rev-parse --short "$GITHUB_SHA"))" -o Data
           dotnet ef database update
       - name: Git commit & push
         run: |
@@ -41,7 +41,7 @@ jobs:
           echo ---------------------  ADD   ---------------------
           git add .
           echo --------------------- COMMIT ---------------------
-          git commit -m "[Chore] Auto EntityFramework Migrations ($(git rev-parse --short "$GITHUB_SHA"))"
+          git commit -m "[Chore] Auto EntityFramework Migrations"
           echo --------------------- BRANCH ---------------------
           git branch
           echo ---------------------  LOG   ---------------------
