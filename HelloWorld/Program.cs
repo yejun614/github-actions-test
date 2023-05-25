@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Hello, World!!");
 
 using var db = new BloggingContext();
 
