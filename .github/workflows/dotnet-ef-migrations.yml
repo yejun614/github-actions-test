@@ -1,6 +1,6 @@
 name: Dotnet EF Migrations
 
-run-name: Run Dotnet EntityFramework Migrations (${{ github.event.number }})
+run-name: Run Dotnet EntityFramework Migrations
 
 on:
   push:
@@ -19,7 +19,6 @@ jobs:
     steps:
       - name: Branch name
         run: |
-          echo test ${{ github.head_ref }}
           echo test ${{ github.ref_name }}
       - uses: actions/checkout@v3
         with:
@@ -31,7 +30,8 @@ jobs:
         run: |
           cd ${WORKSPACE}
           dotnet tool install --global dotnet-ef
-          dotnet ef migrations add ${{ github.event.head_commit.message }}
+          dotnet ef migrations add "${{ github.event.head_commit.message }}"
+          dotnet ef database update
       - name: Git commit & push
         run: |
           git config --local user.email "yejun614@naver.com"
