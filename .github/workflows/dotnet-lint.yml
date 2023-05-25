@@ -1,35 +1,55 @@
 name: Dotnet Lint
-run-name: \[${{ github.event.number }}\] Run Dotnet Lint
+
+run-name: Run Dotnet Lint(${{ github.event.number }})
+
 on:
   pull_request:
-  workflow_dispatch:
-    inputs:
-      number:
-        description: 'Pull Request Number'
-        required: true
-        type: string
+
 jobs:
   Lint:
     runs-on: ubuntu-latest
     permissions:
+      contents: write
       pull-requests: write
     env:
       PR_NUMBER: ${{ github.event.inputs.number }}
+      WORKSPACE: ${{ vars.WORKSPACE }}
     steps:
+      - name: Branch name
+        run: |
+          echo running on branch $GITHUB_BASE_REF
+          echo running on branch $GITHUB_HEAD_REF
+          echo test ${{ github.ref_name }}
+          echo test2 ${{ github.event.pull_request.head.ref }}
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '7.0.x'
-      - run: |
-        dotnet tool install -g dotnet-format
-        dotnet-format server.sln --report dotnet-format-report.json
-      - run: |
-        cat dotnet-format-report.json
-        rm dotnet-format-report.json
-      - run: |
-        git add .
-        git diff
-        git config --local user.email "yejun614@naver.com"
-        git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
-        git commit -m "[Style] dotnet format(${PR_NUMBER})"
-        git push
+      - name: Dotnet Format
+        run: |
+          dotnet tool install -g dotnet-format
+          dotnet-format ${WORKSPACE} --report dotnet-format-report.json
+      - name: Check Report
+        run: |
+          cat ${WORKSPACE}/dotnet-format-report.json
+          rm ${WORKSPACE}/dotnet-format-report.json
+      - name: Git commit & push
+        run: |
+          git config --local user.email "yejun614@naver.com"
+          git config --local user.name "Dotnet Format Bot (by YeJun, Jung)"
+          echo --------------------- STATUS ---------------------
+          git status
+          echo ---------------------  DIFF  ---------------------
+          git diff
+          echo ---------------------  ADD   ---------------------
+          git add ${WORKSPACE}
+          echo --------------------- COMMIT ---------------------
+          git commit -m "[Style] Auto dotnet format"
+          echo --------------------- BRANCH ---------------------
+          git branch
+          echo ---------------------  LOG   ---------------------
+          git log
+          echo ---------------------  PUSH  ---------------------
+          git push origin ${{ github.event.pull_request.head.ref }}
