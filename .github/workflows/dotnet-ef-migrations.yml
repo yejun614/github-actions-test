@@ -8,13 +8,12 @@ on:
       - develop
 
 jobs:
-  Lint:
+  Migrations:
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
     env:
-      PR_NUMBER: ${{ github.event.inputs.number }}
       WORKSPACE: ${{ vars.WORKSPACE }}
     steps:
       - name: Branch name
@@ -39,7 +38,7 @@ jobs:
           echo ---------------------  DIFF  ---------------------
           git diff
           echo ---------------------  ADD   ---------------------
-          git add ${WORKSPACE}
+          git add .
           echo --------------------- COMMIT ---------------------
           git commit -m "[Chore] Auto EntityFramework Migrations"
           echo --------------------- BRANCH ---------------------
